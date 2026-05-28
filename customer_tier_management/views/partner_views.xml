@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_inherit_customer_tier" model="ir.ui.view">
+        <field name="name">res.partner.form.customer.tier</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_tier_history"
+                        string="Tier History"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-history">
+                    <field name="x_tier_history_count" widget="statinfo"/>
+                </button>
+            </xpath>
+
+            <xpath expr="//sheet/notebook" position="inside">
+                <page string="Loyalty Tier">
+                    <group>
+                        <field name="x_tier_id" widget="badge"/>
+                        <field name="x_total_loyalty_points" readonly="1"/>
+                        <field name="x_last_tier_update" readonly="1"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_res_partner_filter_inherit_customer_tier" model="ir.ui.view">
+        <field name="name">res.partner.search.customer.tier</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <filter name="filter_tier_assigned" string="Has Tier" domain="[('x_tier_id','!=',False)]"/>
+                <separator/>
+                <filter name="group_by_tier" string="Group by Tier" context="{'group_by':'x_tier_id'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
