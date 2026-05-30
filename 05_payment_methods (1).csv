@@ -1,0 +1,3 @@
+﻿id,name,is_cash_count,journal_id
+pay_cash,Tiền mặt,TRUE,Cash
+pay_bank,Chuyển khoản,FALSE,Bank

@@ -1,0 +1,5 @@
+﻿id,name,sequence,min_points,auto_discount_percent,active
+tier_basic,Basic,1,0,0,TRUE
+tier_silver,Silver,10,100,5,TRUE
+tier_gold,Gold,20,500,10,TRUE
+tier_diamond,Diamond,30,1000,15,TRUE

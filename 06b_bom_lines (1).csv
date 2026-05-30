@@ -1,0 +1,8 @@
+﻿bom_id/id,product_id/id,product_qty,product_uom_id
+bom_cot_luc_tra,prod_la_luc_tra,0.5,kg
+bom_cot_luc_tra,prod_nuoc,10,L
+bom_luc_tra_sui_m,prod_cot_luc_tra,0.2,L
+bom_luc_tra_sui_m,prod_tran_chau,0.05,kg
+bom_luc_tra_sui_m,prod_kem_sui,0.05,L
+bom_luc_tra_sui_m,prod_ly_m,1,Units
+bom_luc_tra_sui_m,prod_ong_hut,1,Units
