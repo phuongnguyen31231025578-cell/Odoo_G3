@@ -31,9 +31,6 @@
             <field name="email">sales@trabaoloc.vn</field>
             <field name="supplier_rank">1</field>
             <field name="x_quality_score">42</field>
-            <field name="x_price_score">28</field>
-            <field name="x_delivery_score">20</field>
-            <field name="x_vendor_rating">90</field>
             <field name="comment">NCC lá trà chủ lực</field>
         </record>
         <record id="supplier_sua" model="res.partner">
@@ -46,9 +43,6 @@
             <field name="email">order@suaviet.vn</field>
             <field name="supplier_rank">1</field>
             <field name="x_quality_score">40</field>
-            <field name="x_price_score">25</field>
-            <field name="x_delivery_score">20</field>
-            <field name="x_vendor_rating">85</field>
             <field name="comment">Sữa bột &amp; kem béo</field>
         </record>
         <record id="supplier_bao_bi" model="res.partner">
@@ -61,9 +55,6 @@
             <field name="email">anphat.packaging@gmail.com</field>
             <field name="supplier_rank">1</field>
             <field name="x_quality_score">35</field>
-            <field name="x_price_score">22</field>
-            <field name="x_delivery_score">18</field>
-            <field name="x_vendor_rating">75</field>
             <field name="comment">Ly nhựa ống hút</field>
         </record>
         <record id="supplier_duong" model="res.partner">
@@ -76,9 +67,6 @@
             <field name="email">dl.duongbienhoa@gmail.com</field>
             <field name="supplier_rank">1</field>
             <field name="x_quality_score">40</field>
-            <field name="x_price_score">26</field>
-            <field name="x_delivery_score">22</field>
-            <field name="x_vendor_rating">88</field>
             <field name="comment">Đường &amp; siro</field>
         </record>
         <record id="supplier_bot_nang" model="res.partner">
@@ -91,9 +79,6 @@
             <field name="email">sales@botnangtaiky.vn</field>
             <field name="supplier_rank">1</field>
             <field name="x_quality_score">40</field>
-            <field name="x_price_score">26</field>
-            <field name="x_delivery_score">21</field>
-            <field name="x_vendor_rating">87</field>
             <field name="comment">Bột năng làm trân châu</field>
         </record>
         <record id="supplier_bot_cacao" model="res.partner">
@@ -106,9 +91,6 @@
             <field name="email">order@cacaotrongduc.vn</field>
             <field name="supplier_rank">1</field>
             <field name="x_quality_score">41</field>
-            <field name="x_price_score">27</field>
-            <field name="x_delivery_score">21</field>
-            <field name="x_vendor_rating">89</field>
             <field name="comment">Bột ca cao làm trân châu</field>
         </record>
 
@@ -310,6 +292,17 @@
             <field name="partner_id" ref="supplier_bao_bi"/>
             <field name="product_tmpl_id" ref="prod_ong_hut_product_template"/>
             <field name="price">300</field>
+        </record>
+        <!-- NCC cạnh tranh (cùng 1 sản phẩm có 2 NCC) -> demo gợi ý xếp hạng + điểm giá so sánh -->
+        <record id="si_la_tra_2" model="product.supplierinfo">
+            <field name="partner_id" ref="supplier_duong"/>
+            <field name="product_tmpl_id" ref="prod_la_luc_tra_product_template"/>
+            <field name="price">200000</field>
+        </record>
+        <record id="si_duong_2" model="product.supplierinfo">
+            <field name="partner_id" ref="supplier_la_tra"/>
+            <field name="product_tmpl_id" ref="prod_duong_product_template"/>
+            <field name="price">28000</field>
         </record>
 
         <!-- ============================================================= -->

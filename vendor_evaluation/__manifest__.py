@@ -9,6 +9,7 @@
     'data': [
         'security/ir.model.access.csv',
         'Data/evaluation_criteria_data.xml',
+        'Data/vendor_evaluation_cron.xml',
         'views/vendor_evaluation_views.xml',
         'views/res_partner_views.xml',
         'views/purchase_order_views.xml',
