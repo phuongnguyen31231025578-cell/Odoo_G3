@@ -92,6 +92,7 @@
                     string="Hao Hụt TT (%)"
                     optional="show"
                     widget="percentage_field"
+                    
                 />
                 <field
                     name="waste_rate_deviation"
