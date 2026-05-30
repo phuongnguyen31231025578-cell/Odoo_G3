@@ -31,17 +31,12 @@ class PurchaseOrder(models.Model):
                 raise ValidationError(_("Dữ liệu không hợp lệ: Chưa chọn nhà cung cấp cho đơn hàng!"))
             if not order.order_line:
                 raise ValidationError(_("Dữ liệu không hợp lệ: Đơn mua hàng phải có ít nhất một nguyên vật liệu!"))
-            # Chỉ chặn NCC ĐÃ ĐƯỢC ĐÁNH GIÁ và có điểm dưới mức sàn 40.
-            # NCC mới (chưa có PO -> chưa đánh giá) vẫn được phép tạo đơn đầu tiên.
-            if order.partner_id.x_is_evaluated and order.partner_id.x_vendor_rating < 40.0:
+            # Chặn nhà cung cấp dưới mức sàn uy tín 40 điểm
+            if order.partner_id.x_vendor_rating < 40.0:
                 raise ValidationError(_("Dữ liệu không hợp lệ: Nhà cung cấp %s có điểm uy tín quá thấp (%s/100).") % (order.partner_id.name, order.partner_id.x_vendor_rating))
-
+        
         # Gọi hàm gốc super() để Odoo tự động chuyển trạng thái sang PO và TỰ ĐỘNG SINH INCOMING RECEIPT
-        res = super(PurchaseOrder, self).button_confirm()
-
-        # Sau khi xác nhận: NCC đã có PO -> đánh dấu "đã đánh giá" và tính điểm Giá cả
-        self.mapped('partner_id')._recompute_evaluation()
-        return res
+        return super(PurchaseOrder, self).button_confirm()
 
     def button_cancel(self):
         """ Luồng Hủy đơn: Kiểm tra xem đã nhập kho chưa để rẽ nhánh xử lý """
