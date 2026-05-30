@@ -1,0 +1,15 @@
+id,name,default_code,categ_id,type,is_storable,uom_id,list_price,standard_price,sale_ok,purchase_ok,available_in_pos,route_ids
+prod_la_luc_tra,Lá lục trà,RAW-001,All / Nguyên vật liệu thô,consu,TRUE,kg,0,180000,FALSE,TRUE,FALSE,Buy
+prod_sua_bot,Sữa bột,RAW-002,All / Nguyên vật liệu thô,consu,TRUE,kg,0,150000,FALSE,TRUE,FALSE,Buy
+prod_duong,Đường,RAW-003,All / Nguyên vật liệu thô,consu,TRUE,kg,0,25000,FALSE,TRUE,FALSE,Buy
+prod_bot_nang,Bột năng,RAW-007,All / Nguyên vật liệu thô,consu,TRUE,kg,0,32000,FALSE,TRUE,FALSE,Buy
+prod_bot_cacao,Bột ca cao,RAW-008,All / Nguyên vật liệu thô,consu,TRUE,kg,0,210000,FALSE,TRUE,FALSE,Buy
+prod_ly_m,Ly nhựa size M,RAW-004,All / Nguyên vật liệu thô,consu,TRUE,Units,0,1200,FALSE,TRUE,FALSE,Buy
+prod_ong_hut,Ống hút,RAW-005,All / Nguyên vật liệu thô,consu,TRUE,Units,0,300,FALSE,TRUE,FALSE,Buy
+prod_nuoc,Nước sạch,RAW-006,All / Nguyên vật liệu thô,consu,TRUE,L,0,100,FALSE,TRUE,FALSE,Buy
+prod_cot_luc_tra,Cốt lục trà,SEMI-001,All / Bán thành phẩm,consu,TRUE,L,0,0,FALSE,FALSE,FALSE,Manufacture
+prod_cot_hong_tra,Cốt hồng trà,SEMI-002,All / Bán thành phẩm,consu,TRUE,L,0,0,FALSE,FALSE,FALSE,Manufacture
+prod_tran_chau,Trân châu nấu chín,SEMI-003,All / Bán thành phẩm,consu,TRUE,kg,0,0,FALSE,FALSE,FALSE,Manufacture
+prod_kem_sui,Kem sủi bọt,SEMI-004,All / Bán thành phẩm,consu,TRUE,L,0,0,FALSE,FALSE,FALSE,Manufacture
+prod_luc_tra_sui_m,Lục trà sủi bọt trân châu size M,FIN-001,All / Thành phẩm,consu,FALSE,Units,35000,0,TRUE,FALSE,TRUE,
+prod_hong_tra_sua_m,Hồng trà sữa trân châu size M,FIN-002,All / Thành phẩm,consu,FALSE,Units,38000,0,TRUE,FALSE,TRUE,

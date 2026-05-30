@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Bổ sung tab "Đánh giá uy tín" lên form Nhà cung cấp -->
+    <record id="vendor_evaluation_partner_form_view" model="ir.ui.view">
+        <field name="name">res.partner.form.vendor.evaluation</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Đánh giá uy tín NCC" name="vendor_evaluation"
+                      invisible="supplier_rank == 0">
+                    <field name="supplier_rank" invisible="1"/>
+                    <field name="x_is_evaluated" invisible="1"/>
+
+                    <div class="alert alert-info" role="alert"
+                         invisible="x_is_evaluated">
+                        <strong>ℹ️ Nhà cung cấp mới — chưa đánh giá.</strong>
+                        Hệ thống chỉ chấm điểm sau khi NCC có đơn mua hàng (PO) đầu tiên được xác nhận.
+                    </div>
+
+                    <div class="oe_button_box" name="vendor_eval_buttons">
+                        <button name="action_recompute_evaluation" type="object"
+                                string="Tính lại điểm đánh giá" class="btn-secondary"
+                                icon="fa-refresh"/>
+                    </div>
+
+                    <group>
+                        <group string="Điểm tổng kết" invisible="not x_is_evaluated">
+                            <field name="x_vendor_rating"
+                                   widget="progressbar"
+                                   options="{'max_value': 100}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Breakdown 100 điểm">
+                            <field name="x_quality_score"
+                                   help="Quản lý nhập tay (0 - 45)"/>
+                            <field name="x_delivery_score"/>
+                            <field name="x_price_score"/>
+                        </group>
+                        <group string="Cách tính">
+                            <div class="text-muted">
+                                • <strong>Chất lượng (≤45):</strong> quản lý nhập tay.<br/>
+                                • <strong>Giao hàng (≤25):</strong> tự tính theo tỷ lệ phiếu nhập đúng hạn.<br/>
+                                • <strong>Giá cả (≤30):</strong> tự tính khi so giá với NCC khác.
+                            </div>
+                        </group>
+                    </group>
+
+                    <div class="alert alert-warning" role="alert"
+                         invisible="not x_is_evaluated or x_vendor_rating >= 40">
+                        <strong>⚠️ Cảnh báo:</strong> NCC này có điểm uy tín dưới mức sàn 40 điểm —
+                        hệ thống sẽ <strong>chặn xác nhận đơn mua hàng</strong>.
+                    </div>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Tiêu chí 1: Chất lượng hàng hóa (Tối đa 45 điểm) -->
+        <record id="criteria_quality" model="vendor.evaluation.criteria">
+            <field name="name">Chất lượng hàng hóa</field>
+            <field name="code">quality</field>
+            <field name="weight">45.0</field>
+            <field name="active">True</field>
+        </record>
+        <!-- Tiêu chí 2: Giá cả (Tối đa 30 điểm) -->
+        <record id="criteria_price" model="vendor.evaluation.criteria">
+            <field name="name">Giá cả</field>
+            <field name="code">price</field>
+            <field name="weight">30.0</field>
+            <field name="active">True</field>
+        </record>
+        <!-- Tiêu chí 3: Giao hàng đúng hạn (Tối đa 25 điểm) -->
+        <record id="criteria_delivery" model="vendor.evaluation.criteria">
+            <field name="name">Giao hàng đúng hạn</field>
+            <field name="code">delivery</field>
+            <field name="weight">25.0</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</odoo>
