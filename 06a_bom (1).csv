@@ -1,4 +1,0 @@
-﻿id,product_tmpl_id/id,product_qty,product_uom_id,type,x_waste_rate
-bom_cot_luc_tra,prod_cot_luc_tra,10,L,normal,5
-bom_tran_chau,prod_tran_chau,5,kg,normal,8
-bom_luc_tra_sui_m,prod_luc_tra_sui_m,1,Units,phantom,0

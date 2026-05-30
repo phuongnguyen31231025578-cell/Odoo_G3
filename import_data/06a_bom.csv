@@ -1,0 +1,4 @@
+id,product_tmpl_id,product_qty,product_uom_id,type,expected_waste_rate
+bom_cot_luc_tra,Cốt lục trà,10,L,normal,5
+bom_tran_chau,Trân châu nấu chín,5,kg,normal,8
+bom_luc_tra_sui_m,Lục trà sủi bọt trân châu size M,1,Units,phantom,0

@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- ============================================================= -->
+        <!--  1. DANH MỤC SẢN PHẨM                                         -->
+        <!-- ============================================================= -->
+        <record id="cat_raw" model="product.category">
+            <field name="name">Nguyên vật liệu thô</field>
+            <field name="parent_id" ref="product.product_category_goods"/>
+        </record>
+        <record id="cat_semi" model="product.category">
+            <field name="name">Bán thành phẩm</field>
+            <field name="parent_id" ref="product.product_category_goods"/>
+        </record>
+        <record id="cat_fin" model="product.category">
+            <field name="name">Thành phẩm</field>
+            <field name="parent_id" ref="product.product_category_goods"/>
+        </record>
+
+        <!-- ============================================================= -->
+        <!--  2. NHÀ CUNG CẤP (kèm điểm uy tín)                            -->
+        <!-- ============================================================= -->
+        <record id="supplier_la_tra" model="res.partner">
+            <field name="name">Công ty TNHH Trà Bảo Lộc</field>
+            <field name="company_type">company</field>
+            <field name="vat">3600123456</field>
+            <field name="street">12 Quốc lộ 20</field>
+            <field name="city">Lâm Đồng</field>
+            <field name="phone">2633123456</field>
+            <field name="email">sales@trabaoloc.vn</field>
+            <field name="supplier_rank">1</field>
+            <field name="x_quality_score">42</field>
+            <field name="x_price_score">28</field>
+            <field name="x_delivery_score">20</field>
+            <field name="x_vendor_rating">90</field>
+            <field name="comment">NCC lá trà chủ lực</field>
+        </record>
+        <record id="supplier_sua" model="res.partner">
+            <field name="name">Công ty CP Sữa Việt</field>
+            <field name="company_type">company</field>
+            <field name="vat">301234567</field>
+            <field name="street">45 Lê Duẩn</field>
+            <field name="city">Hồ Chí Minh</field>
+            <field name="phone">2838123456</field>
+            <field name="email">order@suaviet.vn</field>
+            <field name="supplier_rank">1</field>
+            <field name="x_quality_score">40</field>
+            <field name="x_price_score">25</field>
+            <field name="x_delivery_score">20</field>
+            <field name="x_vendor_rating">85</field>
+            <field name="comment">Sữa bột &amp; kem béo</field>
+        </record>
+        <record id="supplier_bao_bi" model="res.partner">
+            <field name="name">Cơ sở Bao Bì Nhựa An Phát</field>
+            <field name="company_type">company</field>
+            <field name="vat">312345678</field>
+            <field name="street">78 Tân Tạo</field>
+            <field name="city">Hồ Chí Minh</field>
+            <field name="phone">2837123456</field>
+            <field name="email">anphat.packaging@gmail.com</field>
+            <field name="supplier_rank">1</field>
+            <field name="x_quality_score">35</field>
+            <field name="x_price_score">22</field>
+            <field name="x_delivery_score">18</field>
+            <field name="x_vendor_rating">75</field>
+            <field name="comment">Ly nhựa ống hút</field>
+        </record>
+        <record id="supplier_duong" model="res.partner">
+            <field name="name">Đại lý Đường Biên Hòa</field>
+            <field name="company_type">company</field>
+            <field name="vat">3600234567</field>
+            <field name="street">KCN Biên Hòa 1</field>
+            <field name="city">Đồng Nai</field>
+            <field name="phone">2513123456</field>
+            <field name="email">dl.duongbienhoa@gmail.com</field>
+            <field name="supplier_rank">1</field>
+            <field name="x_quality_score">40</field>
+            <field name="x_price_score">26</field>
+            <field name="x_delivery_score">22</field>
+            <field name="x_vendor_rating">88</field>
+            <field name="comment">Đường &amp; siro</field>
+        </record>
+        <record id="supplier_bot_nang" model="res.partner">
+            <field name="name">Công ty TNHH Bột Năng Tài Ký</field>
+            <field name="company_type">company</field>
+            <field name="vat">303456789</field>
+            <field name="street">156 Bình Tây</field>
+            <field name="city">Hồ Chí Minh</field>
+            <field name="phone">2839555888</field>
+            <field name="email">sales@botnangtaiky.vn</field>
+            <field name="supplier_rank">1</field>
+            <field name="x_quality_score">40</field>
+            <field name="x_price_score">26</field>
+            <field name="x_delivery_score">21</field>
+            <field name="x_vendor_rating">87</field>
+            <field name="comment">Bột năng làm trân châu</field>
+        </record>
+        <record id="supplier_bot_cacao" model="res.partner">
+            <field name="name">Công ty CP Ca Cao Trọng Đức</field>
+            <field name="company_type">company</field>
+            <field name="vat">3600345678</field>
+            <field name="street">KCN Định Quán</field>
+            <field name="city">Đồng Nai</field>
+            <field name="phone">2513777999</field>
+            <field name="email">order@cacaotrongduc.vn</field>
+            <field name="supplier_rank">1</field>
+            <field name="x_quality_score">41</field>
+            <field name="x_price_score">27</field>
+            <field name="x_delivery_score">21</field>
+            <field name="x_vendor_rating">89</field>
+            <field name="comment">Bột ca cao làm trân châu</field>
+        </record>
+
+        <!-- ============================================================= -->
+        <!--  3. SẢN PHẨM (product.product -> tự sinh template id)         -->
+        <!-- ============================================================= -->
+        <!-- 3a. Nguyên vật liệu thô (storable) -->
+        <record id="prod_la_luc_tra" model="product.product">
+            <field name="name">Lá lục trà</field>
+            <field name="default_code">RAW-001</field>
+            <field name="categ_id" ref="cat_raw"/>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="uom_id" ref="uom.product_uom_kgm"/>
+            <field name="standard_price">180000</field>
+            <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+        <record id="prod_sua_bot" model="product.product">
+            <field name="name">Sữa bột</field>
+            <field name="default_code">RAW-002</field>
+            <field name="categ_id" ref="cat_raw"/>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="uom_id" ref="uom.product_uom_kgm"/>
+            <field name="standard_price">150000</field>
+            <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+        <record id="prod_duong" model="product.product">
+            <field name="name">Đường</field>
+            <field name="default_code">RAW-003</field>
+            <field name="categ_id" ref="cat_raw"/>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="uom_id" ref="uom.product_uom_kgm"/>
+            <field name="standard_price">25000</field>
+            <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+        <record id="prod_bot_nang" model="product.product">
+            <field name="name">Bột năng</field>
+            <field name="default_code">RAW-007</field>
+            <field name="categ_id" ref="cat_raw"/>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="uom_id" ref="uom.product_uom_kgm"/>
+            <field name="standard_price">32000</field>
+            <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+        <record id="prod_bot_cacao" model="product.product">
+            <field name="name">Bột ca cao</field>
+            <field name="default_code">RAW-008</field>
+            <field name="categ_id" ref="cat_raw"/>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="uom_id" ref="uom.product_uom_kgm"/>
+            <field name="standard_price">210000</field>
+            <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+        <record id="prod_ly_m" model="product.product">
+            <field name="name">Ly nhựa size M</field>
+            <field name="default_code">RAW-004</field>
+            <field name="categ_id" ref="cat_raw"/>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="standard_price">1200</field>
+            <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+        <record id="prod_ong_hut" model="product.product">
+            <field name="name">Ống hút</field>
+            <field name="default_code">RAW-005</field>
+            <field name="categ_id" ref="cat_raw"/>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="standard_price">300</field>
+            <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+        <record id="prod_nuoc" model="product.product">
+            <field name="name">Nước sạch</field>
+            <field name="default_code">RAW-006</field>
+            <field name="categ_id" ref="cat_raw"/>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="uom_id" ref="uom.product_uom_litre"/>
+            <field name="standard_price">100</field>
+            <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+
+        <!-- 3b. Bán thành phẩm (storable, sản xuất) -->
+        <record id="prod_cot_luc_tra" model="product.product">
+            <field name="name">Cốt lục trà</field>
+            <field name="default_code">SEMI-001</field>
+            <field name="categ_id" ref="cat_semi"/>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="uom_id" ref="uom.product_uom_litre"/>
+            <field name="sale_ok">False</field>
+            <field name="purchase_ok">False</field>
+        </record>
+        <record id="prod_cot_hong_tra" model="product.product">
+            <field name="name">Cốt hồng trà</field>
+            <field name="default_code">SEMI-002</field>
+            <field name="categ_id" ref="cat_semi"/>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="uom_id" ref="uom.product_uom_litre"/>
+            <field name="sale_ok">False</field>
+            <field name="purchase_ok">False</field>
+        </record>
+        <record id="prod_tran_chau" model="product.product">
+            <field name="name">Trân châu nấu chín</field>
+            <field name="default_code">SEMI-003</field>
+            <field name="categ_id" ref="cat_semi"/>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="uom_id" ref="uom.product_uom_kgm"/>
+            <field name="sale_ok">False</field>
+            <field name="purchase_ok">False</field>
+        </record>
+        <record id="prod_kem_sui" model="product.product">
+            <field name="name">Kem sủi bọt</field>
+            <field name="default_code">SEMI-004</field>
+            <field name="categ_id" ref="cat_semi"/>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="uom_id" ref="uom.product_uom_litre"/>
+            <field name="sale_ok">False</field>
+            <field name="purchase_ok">False</field>
+        </record>
+
+        <!-- 3c. Thành phẩm bán POS (kit/phantom) -->
+        <record id="prod_luc_tra_sui_m" model="product.product">
+            <field name="name">Lục trà sủi bọt trân châu size M</field>
+            <field name="default_code">FIN-001</field>
+            <field name="categ_id" ref="cat_fin"/>
+            <field name="type">consu</field>
+            <field name="is_storable">False</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="list_price">35000</field>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">False</field>
+            <field name="available_in_pos">True</field>
+        </record>
+        <record id="prod_hong_tra_sua_m" model="product.product">
+            <field name="name">Hồng trà sữa trân châu size M</field>
+            <field name="default_code">FIN-002</field>
+            <field name="categ_id" ref="cat_fin"/>
+            <field name="type">consu</field>
+            <field name="is_storable">False</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="list_price">38000</field>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">False</field>
+            <field name="available_in_pos">True</field>
+        </record>
+
+        <!-- ============================================================= -->
+        <!--  4. BẢNG GIÁ NHÀ CUNG CẤP (gợi ý NCC khi mua hàng)            -->
+        <!-- ============================================================= -->
+        <record id="si_la_tra" model="product.supplierinfo">
+            <field name="partner_id" ref="supplier_la_tra"/>
+            <field name="product_tmpl_id" ref="prod_la_luc_tra_product_template"/>
+            <field name="price">180000</field>
+        </record>
+        <record id="si_sua" model="product.supplierinfo">
+            <field name="partner_id" ref="supplier_sua"/>
+            <field name="product_tmpl_id" ref="prod_sua_bot_product_template"/>
+            <field name="price">150000</field>
+        </record>
+        <record id="si_duong" model="product.supplierinfo">
+            <field name="partner_id" ref="supplier_duong"/>
+            <field name="product_tmpl_id" ref="prod_duong_product_template"/>
+            <field name="price">25000</field>
+        </record>
+        <record id="si_bot_nang" model="product.supplierinfo">
+            <field name="partner_id" ref="supplier_bot_nang"/>
+            <field name="product_tmpl_id" ref="prod_bot_nang_product_template"/>
+            <field name="price">32000</field>
+        </record>
+        <record id="si_bot_cacao" model="product.supplierinfo">
+            <field name="partner_id" ref="supplier_bot_cacao"/>
+            <field name="product_tmpl_id" ref="prod_bot_cacao_product_template"/>
+            <field name="price">210000</field>
+        </record>
+        <record id="si_ly" model="product.supplierinfo">
+            <field name="partner_id" ref="supplier_bao_bi"/>
+            <field name="product_tmpl_id" ref="prod_ly_m_product_template"/>
+            <field name="price">1200</field>
+        </record>
+        <record id="si_ong_hut" model="product.supplierinfo">
+            <field name="partner_id" ref="supplier_bao_bi"/>
+            <field name="product_tmpl_id" ref="prod_ong_hut_product_template"/>
+            <field name="price">300</field>
+        </record>
+
+        <!-- ============================================================= -->
+        <!--  5. BoM SẢN XUẤT (kèm tỷ lệ hao hụt dự kiến)                  -->
+        <!-- ============================================================= -->
+        <!-- BoM Cốt lục trà: 10 L, hao hụt 5% -->
+        <record id="bom_cot_luc_tra" model="mrp.bom">
+            <field name="product_tmpl_id" ref="prod_cot_luc_tra_product_template"/>
+            <field name="product_qty">10</field>
+            <field name="product_uom_id" ref="uom.product_uom_litre"/>
+            <field name="type">normal</field>
+            <field name="expected_waste_rate">5</field>
+        </record>
+        <record id="bom_cot_luc_tra_l1" model="mrp.bom.line">
+            <field name="bom_id" ref="bom_cot_luc_tra"/>
+            <field name="product_id" ref="prod_la_luc_tra"/>
+            <field name="product_qty">0.5</field>
+            <field name="product_uom_id" ref="uom.product_uom_kgm"/>
+        </record>
+        <record id="bom_cot_luc_tra_l2" model="mrp.bom.line">
+            <field name="bom_id" ref="bom_cot_luc_tra"/>
+            <field name="product_id" ref="prod_nuoc"/>
+            <field name="product_qty">10</field>
+            <field name="product_uom_id" ref="uom.product_uom_litre"/>
+        </record>
+
+        <!-- BoM Trân châu: 5 kg, hao hụt 8% -->
+        <record id="bom_tran_chau" model="mrp.bom">
+            <field name="product_tmpl_id" ref="prod_tran_chau_product_template"/>
+            <field name="product_qty">5</field>
+            <field name="product_uom_id" ref="uom.product_uom_kgm"/>
+            <field name="type">normal</field>
+            <field name="expected_waste_rate">8</field>
+        </record>
+        <record id="bom_tran_chau_l1" model="mrp.bom.line">
+            <field name="bom_id" ref="bom_tran_chau"/>
+            <field name="product_id" ref="prod_bot_nang"/>
+            <field name="product_qty">4</field>
+            <field name="product_uom_id" ref="uom.product_uom_kgm"/>
+        </record>
+        <record id="bom_tran_chau_l2" model="mrp.bom.line">
+            <field name="bom_id" ref="bom_tran_chau"/>
+            <field name="product_id" ref="prod_duong"/>
+            <field name="product_qty">1</field>
+            <field name="product_uom_id" ref="uom.product_uom_kgm"/>
+        </record>
+
+        <!-- BoM Kit thành phẩm POS: 1 ly (phantom) -->
+        <record id="bom_luc_tra_sui_m" model="mrp.bom">
+            <field name="product_tmpl_id" ref="prod_luc_tra_sui_m_product_template"/>
+            <field name="product_qty">1</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="type">phantom</field>
+            <field name="expected_waste_rate">0</field>
+        </record>
+        <record id="bom_kit_l1" model="mrp.bom.line">
+            <field name="bom_id" ref="bom_luc_tra_sui_m"/>
+            <field name="product_id" ref="prod_cot_luc_tra"/>
+            <field name="product_qty">0.2</field>
+            <field name="product_uom_id" ref="uom.product_uom_litre"/>
+        </record>
+        <record id="bom_kit_l2" model="mrp.bom.line">
+            <field name="bom_id" ref="bom_luc_tra_sui_m"/>
+            <field name="product_id" ref="prod_tran_chau"/>
+            <field name="product_qty">0.05</field>
+            <field name="product_uom_id" ref="uom.product_uom_kgm"/>
+        </record>
+        <record id="bom_kit_l3" model="mrp.bom.line">
+            <field name="bom_id" ref="bom_luc_tra_sui_m"/>
+            <field name="product_id" ref="prod_kem_sui"/>
+            <field name="product_qty">0.05</field>
+            <field name="product_uom_id" ref="uom.product_uom_litre"/>
+        </record>
+        <record id="bom_kit_l4" model="mrp.bom.line">
+            <field name="bom_id" ref="bom_luc_tra_sui_m"/>
+            <field name="product_id" ref="prod_ly_m"/>
+            <field name="product_qty">1</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+        </record>
+        <record id="bom_kit_l5" model="mrp.bom.line">
+            <field name="bom_id" ref="bom_luc_tra_sui_m"/>
+            <field name="product_id" ref="prod_ong_hut"/>
+            <field name="product_qty">1</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+        </record>
+
+        <!-- ============================================================= -->
+        <!--  6. VỊ TRÍ KHO bổ sung                                        -->
+        <!-- ============================================================= -->
+        <record id="loc_quay_pha_che" model="stock.location">
+            <field name="name">Quầy Pha Chế</field>
+            <field name="usage">internal</field>
+            <field name="location_id" ref="stock.stock_location_stock"/>
+        </record>
+
+        <!-- ============================================================= -->
+        <!--  7. TỒN KHO ĐẦU KỲ (nguyên vật liệu thô)                      -->
+        <!-- ============================================================= -->
+        <record id="quant_la_tra" model="stock.quant">
+            <field name="product_id" ref="prod_la_luc_tra"/>
+            <field name="quantity">20</field>
+            <field name="location_id" model="stock.location" eval="obj().env.ref('stock.warehouse0').lot_stock_id.id"/>
+        </record>
+        <record id="quant_sua_bot" model="stock.quant">
+            <field name="product_id" ref="prod_sua_bot"/>
+            <field name="quantity">15</field>
+            <field name="location_id" model="stock.location" eval="obj().env.ref('stock.warehouse0').lot_stock_id.id"/>
+        </record>
+        <record id="quant_duong" model="stock.quant">
+            <field name="product_id" ref="prod_duong"/>
+            <field name="quantity">50</field>
+            <field name="location_id" model="stock.location" eval="obj().env.ref('stock.warehouse0').lot_stock_id.id"/>
+        </record>
+        <record id="quant_ly" model="stock.quant">
+            <field name="product_id" ref="prod_ly_m"/>
+            <field name="quantity">2000</field>
+            <field name="location_id" model="stock.location" eval="obj().env.ref('stock.warehouse0').lot_stock_id.id"/>
+        </record>
+        <record id="quant_ong_hut" model="stock.quant">
+            <field name="product_id" ref="prod_ong_hut"/>
+            <field name="quantity">2000</field>
+            <field name="location_id" model="stock.location" eval="obj().env.ref('stock.warehouse0').lot_stock_id.id"/>
+        </record>
+
+        <!-- ============================================================= -->
+        <!--  8. KHÁCH HÀNG                                                -->
+        <!-- ============================================================= -->
+        <record id="cust_khach_le" model="res.partner">
+            <field name="name">Khách lẻ</field>
+            <field name="company_type">person</field>
+            <field name="customer_rank">1</field>
+            <field name="comment">Khách mua tại quầy không lấy thông tin</field>
+        </record>
+        <record id="cust_nguyen_an" model="res.partner">
+            <field name="name">Nguyễn Văn An</field>
+            <field name="company_type">person</field>
+            <field name="phone">911111111</field>
+            <field name="email">an.nguyen@gmail.com</field>
+            <field name="customer_rank">1</field>
+            <field name="comment">Thích ít đường nhiều đá</field>
+        </record>
+        <record id="cust_tran_binh" model="res.partner">
+            <field name="name">Trần Thị Bình</field>
+            <field name="company_type">person</field>
+            <field name="phone">922222222</field>
+            <field name="email">binh.tran@gmail.com</field>
+            <field name="customer_rank">1</field>
+            <field name="comment">Khách quen đặt định kỳ - dùng sữa thực vật</field>
+        </record>
+        <record id="cust_cong_ty_xyz" model="res.partner">
+            <field name="name">Công ty XYZ (đặt theo lô)</field>
+            <field name="company_type">company</field>
+            <field name="phone">2839999999</field>
+            <field name="email">order@xyz.com.vn</field>
+            <field name="customer_rank">1</field>
+            <field name="comment">Đặt nước cho sự kiện</field>
+        </record>
+
+        <!-- ============================================================= -->
+        <!--  9. CHƯƠNG TRÌNH KHUYẾN MÃI / LOYALTY                         -->
+        <!-- ============================================================= -->
+        <record id="promo_buy9get1" model="loyalty.program">
+            <field name="name">Mua 9 tặng 1 (tích tem)</field>
+            <field name="program_type">loyalty</field>
+            <field name="date_from">2026-01-01</field>
+            <field name="date_to">2026-12-31</field>
+        </record>
+        <record id="promo_happy_hour" model="loyalty.program">
+            <field name="name">Giảm 20% khung 14h-16h</field>
+            <field name="program_type">promotion</field>
+            <field name="date_from">2026-01-01</field>
+            <field name="date_to">2026-12-31</field>
+        </record>
+        <record id="promo_combo" model="loyalty.program">
+            <field name="name">Combo 2 ly giảm 10k</field>
+            <field name="program_type">promotion</field>
+            <field name="date_from">2026-01-01</field>
+            <field name="date_to">2026-12-31</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,4 +1,0 @@
-﻿id,name,program_type,trigger,applies_on,date_from,date_to
-promo_buy9get1,Mua 9 tặng 1 (tích tem),loyalty,auto,both,01/01/26 0:00,12/31/26 0:00
-promo_happy_hour,Giảm 20% khung 14h-16h,promotion,auto,current,01/01/26 0:00,12/31/26 0:00
-promo_combo,Combo 2 ly giảm 10k,promotion,auto,current,01/01/26 0:00,12/31/26 0:00
