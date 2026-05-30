@@ -7,11 +7,8 @@ patch(PartnerLine.prototype, {
 
     getPartnerLoyaltyPoints(partner) {
         if (!partner) return 0;
-        const loyaltyCards = this.pos.models['loyalty.card']?.getAll() || [];
-        const partnerCards = loyaltyCards.filter(
-            (card) => card.partner_id?.[0] === partner.id || card.partner_id === partner.id
-        );
-        return partnerCards.reduce((sum, card) => sum + (card.points || 0), 0);
+        // Lấy từ field được sync sẵn trên partner
+        return partner.pos_loyalty_points || 0;
     },
 
     getLoyaltyRank(points) {
