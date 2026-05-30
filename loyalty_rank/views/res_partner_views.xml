@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Extend danh sách khách hàng CRM -->
+    <record id="view_partner_loyalty_tree" model="ir.ui.view">
+        <field name="name">res.partner.loyalty.tree</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='country_id']" position="after">
+                <field name="pos_loyalty_points"
+                       string="Tổng điểm"
+                       optional="show"
+                       widget="float"
+                       digits="[16,0]"/>
+                <field name="loyalty_rank_label"
+                       string="Hạng KH"
+                       optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Extend form khách hàng -->
+    <record id="view_partner_loyalty_form" model="ir.ui.view">
+        <field name="name">res.partner.loyalty.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='internal_notes']" position="before">
+                <page string="Loyalty" name="loyalty_info">
+                    <group>
+                        <group string="Điểm &amp; Hạng">
+                            <field name="pos_loyalty_points"
+                                   string="Tổng điểm Loyalty"
+                                   widget="float"
+                                   digits="[16,0]"
+                                   readonly="1"/>
+                            <field name="loyalty_rank"
+                                   string="Hạng khách hàng"
+                                   readonly="1"/>
+                        </group>
+                    </group>
+                    <div class="alert alert-info" role="alert">
+                        <strong>Quy tắc phân hạng:</strong><br/>
+                        🔘 Thường: 0 – 49 điểm<br/>
+                        🥉 Đồng: 50 – 109 điểm<br/>
+                        🥈 Bạc: 110 – 174 điểm<br/>
+                        🥇 Vàng: 175 – 254 điểm<br/>
+                        💎 Kim Cương: 255+ điểm
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+
+    <!-- Mobile layout -->
+    <t t-inherit="point_of_sale.PartnerLine" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('partner-line-email')]" position="after">
+            <div class="loyalty-info p-1">
+                <t t-set="pts" t-value="this.getPartnerLoyaltyPoints(props.partner)"/>
+                <span class="loyalty-points me-2">
+                    <i class="fa fa-star text-warning me-1"/>
+                    <t t-esc="pts"/> điểm
+                </span>
+                <span t-attf-class="loyalty-rank-badge {{ this.getRankBadgeClass(pts) }}">
+                    <t t-esc="this.getLoyaltyRank(pts)"/>
+                </span>
+            </div>
+        </xpath>
+    </t>
+
+    <!-- Desktop layout -->
+    <t t-inherit="point_of_sale.PartnerLine" t-inherit-mode="extension">
+        <xpath expr="//td[hasclass('partner-line-email')]" position="inside">
+            <div class="loyalty-info mt-1">
+                <t t-set="pts" t-value="this.getPartnerLoyaltyPoints(props.partner)"/>
+                <span class="loyalty-points me-2">
+                    <i class="fa fa-star text-warning me-1"/>
+                    <t t-esc="pts"/> điểm
+                </span>
+                <span t-attf-class="loyalty-rank-badge {{ this.getRankBadgeClass(pts) }}">
+                    <t t-esc="this.getLoyaltyRank(pts)"/>
+                </span>
+            </div>
+        </xpath>
+    </t>
+
+</templates>

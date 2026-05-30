@@ -1,5 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_customer_tier_user,customer.tier user,model_customer_tier,base.group_user,1,0,0,0
-access_customer_tier_manager,customer.tier manager,model_customer_tier,sales_team.group_sale_manager,1,1,1,1
-access_customer_tier_history_user,customer.tier.history user,model_customer_tier_history,base.group_user,1,1,1,0
-access_customer_tier_history_admin,customer.tier.history admin,model_customer_tier_history,base.group_system,1,1,1,1
