@@ -15,8 +15,9 @@ class StockPicking(models.Model):
                 # Tính điểm tiến độ giao hàng đúng hạn (Tối đa 25 điểm)
                 scheduled_date = po.date_planned
                 actual_date = picking.date_done or fields.Datetime.now()
-                
-                if actual_date <= scheduled_date:
+
+                # Không có ngày hẹn (đơn nhập tay) hoặc giao đúng/sớm hạn -> 25 điểm tối đa
+                if not scheduled_date or actual_date <= scheduled_date:
                     delivery_score = 25.0
                 else:
                     delay_days = (actual_date - scheduled_date).days

@@ -1,0 +1,4 @@
+id,name,parent_id
+cat_raw,Nguyên vật liệu thô,All
+cat_semi,Bán thành phẩm,All
+cat_fin,Thành phẩm,All

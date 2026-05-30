@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ===================== LIST VIEW: TIÊU CHÍ CHẤM ĐIỂM ===================== -->
+    <record id="vendor_evaluation_criteria_list_view" model="ir.ui.view">
+        <field name="name">vendor.evaluation.criteria.list</field>
+        <field name="model">vendor.evaluation.criteria</field>
+        <field name="arch" type="xml">
+            <list string="Tiêu chí chấm điểm nhà cung cấp" editable="bottom">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="weight" sum="Tổng điểm"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ===================== FORM VIEW: TIÊU CHÍ CHẤM ĐIỂM ===================== -->
+    <record id="vendor_evaluation_criteria_form_view" model="ir.ui.view">
+        <field name="name">vendor.evaluation.criteria.form</field>
+        <field name="model">vendor.evaluation.criteria</field>
+        <field name="arch" type="xml">
+            <form string="Tiêu chí chấm điểm">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                        <group>
+                            <field name="weight"/>
+                            <field name="active" widget="boolean_toggle"/>
+                        </group>
+                    </group>
+                    <div class="alert alert-info" role="alert">
+                        Lưu ý: Tổng "Điểm tối đa" của tất cả tiêu chí đang kích hoạt
+                        bắt buộc phải bằng <strong>100 điểm</strong>.
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ===================== ACTION ===================== -->
+    <record id="action_vendor_evaluation_criteria" model="ir.actions.act_window">
+        <field name="name">Tiêu chí chấm điểm NCC</field>
+        <field name="res_model">vendor.evaluation.criteria</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Cấu hình bảng tiêu chí chấm điểm nhà cung cấp
+            </p>
+            <p>
+                Tổng điểm tối đa của các tiêu chí đang kích hoạt phải bằng 100 điểm
+                (mặc định: Chất lượng 45 + Giá cả 30 + Giao hàng 25).
+            </p>
+        </field>
+    </record>
+
+    <!-- ===================== MENU ===================== -->
+    <menuitem id="menu_vendor_evaluation_criteria"
+              name="Tiêu chí chấm điểm NCC"
+              parent="purchase.menu_purchase_config"
+              action="action_vendor_evaluation_criteria"
+              sequence="5"/>
+
+    <!-- Kéo "Categories" ra thẳng cấp Configuration để thẳng hàng với Settings / Vendor Pricelists
+         (mặc định Odoo gom nó vào nhóm con "Products" nên bị thụt lề) -->
+    <record id="purchase.menu_product_category_config_purchase" model="ir.ui.menu">
+        <field name="parent_id" ref="purchase.menu_purchase_config"/>
+        <field name="sequence">2</field>
+    </record>
+
+</odoo>

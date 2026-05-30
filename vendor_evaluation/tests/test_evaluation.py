@@ -33,12 +33,12 @@ class TestVendorEvaluationFullWorkflow(TransactionCase):
 
         # 4. Cấu hình bảng giá (Pricelist) báo cho Odoo biết cả 2 ông cùng bán mặt hàng này
         cls.env['product.supplierinfo'].create({
-            'name': cls.vendor_A.id,
+            'partner_id': cls.vendor_A.id,
             'product_tmpl_id': cls.product.product_tmpl_id.id,
             'price': 100.0,
         })
         cls.env['product.supplierinfo'].create({
-            'name': cls.vendor_B.id,
+            'partner_id': cls.vendor_B.id,
             'product_tmpl_id': cls.product.product_tmpl_id.id,
             'price': 120.0,
         })

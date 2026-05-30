@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Hiển thị NCC đề xuất + điểm số ngay trên dòng đơn mua hàng -->
+    <record id="vendor_evaluation_purchase_order_form_view" model="ir.ui.view">
+        <field name="name">purchase.order.form.vendor.evaluation</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Hiển thị điểm uy tín NCC ngay cạnh ô Nhà cung cấp trên header -->
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="x_vendor_rating"
+                       widget="float"
+                       readonly="1"
+                       invisible="not partner_id"/>
+            </xpath>
+
+            <!-- Thêm 2 cột vào lưới dòng sản phẩm: NCC đề xuất & Điểm uy tín -->
+            <xpath expr="//field[@name='order_line']//field[@name='product_id']" position="after">
+                <field name="x_suggested_vendor_id" optional="show"/>
+                <field name="x_vendor_score_display"
+                       string="Điểm uy tín (/100)"
+                       widget="float"
+                       optional="show"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

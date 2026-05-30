@@ -7,7 +7,11 @@
     'author': 'Châu Viên & Admin Group',
     'depends': ['purchase', 'stock', 'account'],
     'data': [
-        'data/evaluation_criteria_data.xml',
+        'security/ir.model.access.csv',
+        'Data/evaluation_criteria_data.xml',
+        'views/vendor_evaluation_views.xml',
+        'views/res_partner_views.xml',
+        'views/purchase_order_views.xml',
     ],
     'installable': True,
     'application': True,
