@@ -1,0 +1,7 @@
+﻿id,name,company_type,vat,street,city,phone,mobile,email,supplier_rank,property_supplier_payment_term_id,x_vendor_rating,x_quality_score,x_price_score,x_delivery_score,comment
+supplier_la_tra,Công ty TNHH Trà Bảo Lộc,company,3600123456,12 Quốc lộ 20,Lâm Đồng,2633123456,901234567,sales@trabaoloc.vn,1,30 Days,90,42,28,20,NCC lá trà chủ lực
+supplier_sua,Công ty CP Sữa Việt,company,301234567,45 Lê Duẩn,Hồ Chí Minh,2838123456,902345678,order@suaviet.vn,1,15 Days,85,40,25,20,Sữa bột & kem béo
+supplier_bao_bi,Cơ sở Bao Bì Nhựa An Phát,company,312345678,78 Tân Tạo,Hồ Chí Minh,2837123456,903456789,anphat.packaging@gmail.com,1,Immediate Payment,75,35,22,18,Ly nhựa ống hút
+supplier_duong,Đại lý Đường Biên Hòa,company,3600234567,KCN Biên Hòa 1,Đồng Nai,2513123456,904567890,dl.duongbienhoa@gmail.com,1,30 Days,88,40,26,22,Đường & siro
+supplier_bot_nang,Công ty TNHH Bột Năng Tài Ký,company,303456789,156 Bình Tây,Hồ Chí Minh,2839555888,905678901,sales@botnangtaiky.vn,1,15 Days,87,40,26,21,Bột năng làm trân châu
+supplier_bot_cacao,Công ty CP Ca Cao Trọng Đức,company,3600345678,KCN Định Quán,Đồng Nai,2513777999,906789012,order@cacaotrongduc.vn,1,30 Days,89,41,27,21,Bột ca cao làm trân châu

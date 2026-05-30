@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ===================== FORM VIEW ===================== -->
+    <record id="chau_vien_mrp_production_form_view" model="ir.ui.view">
+        <field name="name">chau.vien.mrp.production.form</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+
+            <!--
+                Thêm tab "Hao Hụt" vào notebook của MO.
+                Hiển thị:
+                - Expected Waste Rate (lấy từ BoM, readonly)
+                - Actual Qty (nhân viên nhập sau khi hoàn tất)
+                - Actual Waste Rate (tự tính)
+                - Waste Rate Deviation (tự tính)
+                - Cảnh báo nếu vượt 3%
+            -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Hao Hụt" name="waste_tracking">
+                    <group>
+                        <group string="Dự Kiến">
+                            <field
+                                name="expected_waste_rate"
+                                readonly="1"
+                                widget="percentage_field"
+                            />
+                        </group>
+                        <group string="Thực Tế">
+                            <field
+                                name="actual_qty"
+                                readonly="state in ['draft', 'cancel']"
+                            />
+                            <field
+                                name="actual_waste_rate"
+                                readonly="1"
+                                widget="percentage_field"
+                            />
+                            <field
+                                name="waste_rate_deviation"
+                                readonly="1"
+                                widget="percentage_field"
+                            />
+                        </group>
+                    </group>
+
+                    <!-- Cảnh báo hiển thị khi chênh lệch > 3% -->
+                    <div
+                        class="alert alert-danger"
+                        invisible="not is_waste_exceeded"
+                        role="alert"
+                    >
+                        <strong>⚠️ Cảnh báo hao hụt vượt mức!</strong>
+                        Chênh lệch hao hụt thực tế so với dự kiến vượt quá 3%.
+                        Vui lòng kiểm tra lại quy trình sản xuất.
+                    </div>
+
+                    <field name="is_waste_exceeded" invisible="1"/>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+    <!-- ===================== LIST VIEW ===================== -->
+    <record id="chau_vien_mrp_production_list_view" model="ir.ui.view">
+        <field name="name">chau.vien.mrp.production.list</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+        <field name="arch" type="xml">
+
+            <!--
+                Thêm cột Actual Qty, Actual Waste Rate, Deviation vào list view.
+                Tô đỏ toàn bộ dòng nếu is_waste_exceeded = True
+                bằng decoration-danger.
+            -->
+            <xpath expr="//list" position="attributes">
+                <attribute name="decoration-danger">is_waste_exceeded == True</attribute>
+            </xpath>
+
+            <!-- Thêm các cột waste vào cuối list, trước cột Scheduled Date nếu có -->
+            <xpath expr="//list/field[last()]" position="after">
+                <field name="is_waste_exceeded" column_invisible="1"/>
+                <field
+                    name="actual_qty"
+                    string="SL Thực Tế"
+                    optional="show"
+                />
+                <field
+                    name="actual_waste_rate"
+                    string="Hao Hụt TT (%)"
+                    optional="show"
+                    widget="percentage_field"
+                />
+                <field
+                    name="waste_rate_deviation"
+                    string="Chênh Lệch (%)"
+                    optional="show"
+                    widget="percentage_field"
+                />
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

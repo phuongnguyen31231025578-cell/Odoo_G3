@@ -1,20 +1,30 @@
-from odoo import api, fields, models
+# -*- coding: utf-8 -*-
+from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
 
 class MrpBom(models.Model):
-    _inherit = "mrp.bom"
+    _inherit = 'mrp.bom'
 
-    x_waste_rate = fields.Float(
-        string="Waste Rate (%)",
+    expected_waste_rate = fields.Float(
+        string='Tỷ lệ hao hụt dự kiến (%)',
         default=0.0,
-        help="Expected material waste rate for this Bill of Materials.",
+        digits=(5, 2),
+        help=(
+            'Tỷ lệ hao hụt dự kiến trong quá trình sản xuất (%).\n'
+            'Chỉ áp dụng cho BoM loại "Manufacture this product".\n'
+            'Dùng để so sánh với hao hụt thực tế khi hoàn tất lệnh sản xuất.'
+        ),
     )
 
-    @api.constrains("x_waste_rate")
-    def _check_x_waste_rate(self):
-        for bom in self:
-            if bom.x_waste_rate < 0:
-                raise ValidationError("Waste Rate (%) không được nhỏ hơn 0.")
-            if bom.x_waste_rate > 100:
-                raise ValidationError("Waste Rate (%) không được lớn hơn 100.")
+    @api.constrains('expected_waste_rate')
+    def _check_expected_waste_rate(self):
+        for rec in self:
+            if rec.expected_waste_rate < 0:
+                raise ValidationError(
+                    'Tỷ lệ hao hụt dự kiến không được âm.'
+                )
+            if rec.expected_waste_rate > 100:
+                raise ValidationError(
+                    'Tỷ lệ hao hụt dự kiến không được vượt quá 100%.'
+                )

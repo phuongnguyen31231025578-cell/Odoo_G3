@@ -1,0 +1,5 @@
+﻿id,name,company_type,phone,mobile,email,customer_rank,comment
+cust_khach_le,Khách lẻ,person,,,,1,Khách mua tại quầy không lấy thông tin
+cust_nguyen_an,Nguyễn Văn An,person,,911111111,an.nguyen@gmail.com,1,Thích ít đường nhiều đá
+cust_tran_binh,Trần Thị Bình,person,,922222222,binh.tran@gmail.com,1,Khách quen đặt định kỳ - dùng sữa thực vật
+cust_cong_ty_xyz,Công ty XYZ (đặt theo lô),company,2839999999,,order@xyz.com.vn,1,Đặt nước cho sự kiện
