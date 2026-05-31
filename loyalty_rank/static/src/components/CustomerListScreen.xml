@@ -1,28 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <templates>
-
-    <!-- Mobile layout -->
     <t t-inherit="point_of_sale.PartnerLine" t-inherit-mode="extension">
         <xpath expr="//div[hasclass('partner-line-email')]" position="after">
             <div class="loyalty-info p-1">
-                <t t-set="pts" t-value="this.getPartnerLoyaltyPoints(props.partner)"/>
-                <span t-attf-class="loyalty-rank-badge {{ this.getRankBadgeClass(pts) }}">
-                    <t t-esc="this.getLoyaltyRank(pts)"/>
+                <t t-set="pts" t-value="props.partner.loyalty_points or props.partner.pos_loyalty_points or 0"/>
+                <t t-set="rank" t-value="pts >= 255 ? '💎 Kim Cương' : pts >= 175 ? '🥇 Vàng' : pts >= 110 ? '🥈 Bạc' : pts >= 50 ? '🥉 Đồng' : '🔘 Thường'"/>
+                <t t-set="rankClass" t-value="pts >= 255 ? 'rank-diamond' : pts >= 175 ? 'rank-gold' : pts >= 110 ? 'rank-silver' : pts >= 50 ? 'rank-bronze' : 'rank-normal'"/>
+                <span t-attf-class="loyalty-rank-badge {{ rankClass }}">
+                    <t t-esc="rank"/>
                 </span>
             </div>
         </xpath>
     </t>
-
-    <!-- Desktop layout -->
     <t t-inherit="point_of_sale.PartnerLine" t-inherit-mode="extension">
         <xpath expr="//td[hasclass('partner-line-email')]" position="inside">
             <div class="loyalty-info mt-1">
-                <t t-set="pts" t-value="this.getPartnerLoyaltyPoints(props.partner)"/>
-                <span t-attf-class="loyalty-rank-badge {{ this.getRankBadgeClass(pts) }}">
-                    <t t-esc="this.getLoyaltyRank(pts)"/>
+                <t t-set="pts" t-value="props.partner.loyalty_points or props.partner.pos_loyalty_points or 0"/>
+                <t t-set="rank" t-value="pts >= 255 ? '💎 Kim Cương' : pts >= 175 ? '🥇 Vàng' : pts >= 110 ? '🥈 Bạc' : pts >= 50 ? '🥉 Đồng' : '🔘 Thường'"/>
+                <t t-set="rankClass" t-value="pts >= 255 ? 'rank-diamond' : pts >= 175 ? 'rank-gold' : pts >= 110 ? 'rank-silver' : pts >= 50 ? 'rank-bronze' : 'rank-normal'"/>
+                <span t-attf-class="loyalty-rank-badge {{ rankClass }}">
+                    <t t-esc="rank"/>
                 </span>
             </div>
         </xpath>
     </t>
-
 </templates>

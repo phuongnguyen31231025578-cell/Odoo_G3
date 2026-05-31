@@ -51,7 +51,9 @@ class ResPartner(models.Model):
     @api.depends('loyalty_card_ids.points')
     def _compute_pos_loyalty_points(self):
         for partner in self:
-            partner.pos_loyalty_points = sum(partner.loyalty_card_ids.mapped('points'))
+            partner.pos_loyalty_points = sum(
+                partner.loyalty_card_ids.mapped('points')
+            )
 
     @api.depends('pos_loyalty_points')
     def _compute_loyalty_rank(self):
@@ -65,3 +67,9 @@ class ResPartner(models.Model):
                     break
             partner.loyalty_rank = rank
             partner.loyalty_rank_label = rank_labels.get(rank, 'Thường')
+
+    @api.model
+    def _load_pos_data_fields(self, config):
+        result = super()._load_pos_data_fields(config)
+        result += ['pos_loyalty_points', 'loyalty_rank', 'loyalty_rank_label']
+        return result

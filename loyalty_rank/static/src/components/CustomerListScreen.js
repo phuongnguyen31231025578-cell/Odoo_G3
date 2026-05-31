@@ -4,10 +4,19 @@ import { patch } from "@web/core/utils/patch";
 import { PartnerLine } from "@point_of_sale/app/screens/partner_list/partner_line/partner_line";
 
 patch(PartnerLine.prototype, {
-
     getPartnerLoyaltyPoints(partner) {
         if (!partner) return 0;
-        // Lấy từ field được sync sẵn trên partner
+        // Thử đọc từ loyalty cards trong POS models trước
+        try {
+            const allCards = this.pos.models['loyalty.card']
+                ? this.pos.models['loyalty.card'].getAll()
+                : [];
+            const pts = allCards
+                .filter(c => c.partner_id === partner.id)
+                .reduce((s, c) => s + (c.points || 0), 0);
+            if (pts > 0) return pts;
+        } catch(e) {}
+        // Fallback về stored field
         return partner.pos_loyalty_points || 0;
     },
 
